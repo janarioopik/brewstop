@@ -1,2 +1,3 @@
-INSERT INTO PUBLIC.DISH (NAME, PRICE) VALUES ('Espresso', 2.00);
-INSERT INTO PUBLIC.DISH (NAME, PRICE) VALUES ('Cappuchino', 3.00);
+INSERT INTO category (name) VALUES ('Coffee'), ('Cake');
+INSERT INTO product (name, price, category_id) VALUES
+('Espresso',   2.50, 1),('Cheesecake', 4.10, 2);

@@ -1,4 +1,4 @@
-package eu.itcrafters.brewstop.infrastructure.persistence.dish;
+package eu.itcrafters.brewstop.infrastructure.persistence;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -6,13 +6,14 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "DISH")
-public class Dish {
+@Table(name = "CATEGORY")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
@@ -23,8 +24,7 @@ public class Dish {
     @Column(name = "NAME", nullable = false, length = 50)
     private String name;
 
-    @NotNull
-    @Column(name = "PRICE", nullable = false, precision = 7, scale = 2)
-    private BigDecimal price;
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products = new LinkedHashSet<>();
 
 }
