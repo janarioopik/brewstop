@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class ProductController {
            @ApiResponse(responseCode = "404", description = "Product type not exist",
                    content = @Content(schema = @Schema(implementation = ApiError.class)))
    })
-    public void addProduct(@RequestBody ProductDto productDto) {
+    public void addProduct(@RequestBody @Valid ProductDto productDto) {
        productService.addProduct(productDto);
    }
 
