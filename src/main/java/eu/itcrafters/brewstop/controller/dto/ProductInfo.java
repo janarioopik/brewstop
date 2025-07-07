@@ -1,6 +1,8 @@
 package eu.itcrafters.brewstop.controller.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
@@ -9,9 +11,10 @@ import java.math.BigDecimal;
  */
 
 @Data
-public class ProductDto {
+@EqualsAndHashCode(callSuper = true)
+@ToString
+public class ProductInfo extends ProductDto {
+    private Integer id;
 
-    private String name;
-    private BigDecimal price;
-    private String categoryName;
+
 }

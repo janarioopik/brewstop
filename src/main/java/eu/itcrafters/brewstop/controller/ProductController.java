@@ -1,6 +1,7 @@
 package eu.itcrafters.brewstop.controller;
 
 import eu.itcrafters.brewstop.controller.dto.ProductDto;
+import eu.itcrafters.brewstop.controller.dto.ProductInfo;
 import eu.itcrafters.brewstop.infrastructure.rest.error.ApiError;
 import eu.itcrafters.brewstop.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
 
-    //@GetMapping
-    //public List<ProductDto> all() {return productService.getAll();}
 
 
     @GetMapping("/products/{id}")
@@ -32,4 +33,12 @@ public class ProductController {
     public ProductDto findProduct(@PathVariable ("id")Integer id) {
        return productService.findProduct(id);
     }
+
+
+  @GetMapping("/products")
+  @Operation(summary = "shows all products")
+     public List<ProductInfo> findAll() {
+        return productService.findAll();
+     }
+
 }
