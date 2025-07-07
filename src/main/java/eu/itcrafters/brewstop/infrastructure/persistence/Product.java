@@ -28,8 +28,9 @@ public class Product {
     private BigDecimal price;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CATEGORY_ID", nullable = false)
     private Category category;
+
 
 }

@@ -22,23 +22,22 @@ public class ProductController {
     private final ProductService productService;
 
 
-
     @GetMapping("/products/{id}")
     @Operation(summary = "Finds product by Id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "ok"),
             @ApiResponse(responseCode = "404", description = "Product not exist",
-            content = @Content(schema = @Schema(implementation = ApiError.class)))
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))
     })
-    public ProductDto findProduct(@PathVariable ("id")Integer id) {
-       return productService.findProduct(id);
+    public ProductDto findProduct(@PathVariable("id") Integer id) {
+        return productService.findProduct(id);
     }
 
 
-  @GetMapping("/products")
-  @Operation(summary = "shows all products")
-     public List<ProductInfo> findAll() {
+    @GetMapping("/products")
+    @Operation(summary = "shows all products")
+    public List<ProductInfo> findAll() {
         return productService.findAll();
-     }
+    }
 
 }

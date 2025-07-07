@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-
 /**
  * DTO for {@link eu.itcrafters.brewstop.infrastructure.persistence.Product}
  */
