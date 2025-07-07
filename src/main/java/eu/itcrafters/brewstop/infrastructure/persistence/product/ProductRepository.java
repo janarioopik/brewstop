@@ -1,6 +1,5 @@
-package eu.itcrafters.brewstop.service;
+package eu.itcrafters.brewstop.infrastructure.persistence.product;
 
-import eu.itcrafters.brewstop.infrastructure.persistence.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {

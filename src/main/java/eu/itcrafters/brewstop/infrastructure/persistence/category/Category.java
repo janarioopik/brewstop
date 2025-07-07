@@ -1,5 +1,6 @@
-package eu.itcrafters.brewstop.infrastructure.persistence;
+package eu.itcrafters.brewstop.infrastructure.persistence.category;
 
+import eu.itcrafters.brewstop.infrastructure.persistence.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

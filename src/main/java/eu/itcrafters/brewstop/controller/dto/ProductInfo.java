@@ -1,11 +1,12 @@
 package eu.itcrafters.brewstop.controller.dto;
 
+import eu.itcrafters.brewstop.infrastructure.persistence.product.Product;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * DTO for {@link eu.itcrafters.brewstop.infrastructure.persistence.Product}
+ * DTO for {@link Product}
  */
 
 @Data

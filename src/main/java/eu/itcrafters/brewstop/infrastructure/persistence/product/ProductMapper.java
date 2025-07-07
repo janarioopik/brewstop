@@ -1,8 +1,7 @@
-package eu.itcrafters.brewstop.service;
+package eu.itcrafters.brewstop.infrastructure.persistence.product;
 
 import eu.itcrafters.brewstop.controller.dto.ProductDto;
 import eu.itcrafters.brewstop.controller.dto.ProductInfo;
-import eu.itcrafters.brewstop.infrastructure.persistence.Product;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -16,12 +15,18 @@ public interface ProductMapper {
 
     ProductDto toProductDto(Product product);
 
-    @InheritInverseConfiguration(name = "toProductDto")
+    @InheritInverseConfiguration(name = "toProduct")
     @Mapping(source = "id", target = "id")
     @Mapping(source = "category.name", target = "categoryName")
     ProductInfo toProductInfo(Product product);
 
 
     List<ProductInfo> toProductInfos(List<Product> products);
+
+
+
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "price", target = "price")
+    Product toProduct(ProductDto productDto);
 }
 
