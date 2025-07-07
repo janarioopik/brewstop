@@ -1,18 +1,20 @@
 package eu.itcrafters.brewstop.service;
 
-import eu.itcrafters.brewstop.controller.ProductDto;
+import eu.itcrafters.brewstop.controller.dto.ProductDto;
 import eu.itcrafters.brewstop.infrastructure.persistence.Product;
 import org.mapstruct.Mapper;
-import org.springframework.web.bind.annotation.Mapping;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 
-import java.util.Optional;
-
-@Mapper(componentModel = "spring")
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductMapper {
-
-    @Mapping(source = "category.id", target = "categoryId")
-    ProductDto toDto(Optional<Product> entity);
-
-    @Mapping(source = "categoryId", target = "category.id")
-    Product toEntity(ProductDto dto);
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "category", target = "category")
+    ProductDto toProductDto(Product product);
 }
+   //@Mapping(source = "categoryId", target = "category.id")
+   // Product toEntity(ProductDto dto);
+

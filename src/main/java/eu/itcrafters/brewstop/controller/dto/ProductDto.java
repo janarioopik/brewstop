@@ -1,8 +1,9 @@
-package eu.itcrafters.brewstop.controller;
+package eu.itcrafters.brewstop.controller.dto;
 
 import eu.itcrafters.brewstop.infrastructure.persistence.Category;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import lombok.Value;
 
 import java.io.Serializable;
@@ -11,14 +12,15 @@ import java.math.BigDecimal;
 /**
  * DTO for {@link eu.itcrafters.brewstop.infrastructure.persistence.Product}
  */
-@Value
+
+@Data
 public class ProductDto implements Serializable {
-    Integer id;
+    private Integer id;
     @NotNull
     @Size(max = 100)
-    String name;
+    private String name;
     @NotNull
-    BigDecimal price;
+    private BigDecimal price;
     @NotNull
-    Category category;
+    private Category category;
 }
