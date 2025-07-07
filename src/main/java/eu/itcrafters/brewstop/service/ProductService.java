@@ -21,7 +21,7 @@ public class ProductService {
 
     public ProductDto findProduct(Integer id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new DataNotFoundException("Product not found"));
+                .orElseThrow(() -> new DataNotFoundException("Product is not in menu"));
        ProductDto productDto = productMapper.toProductDto(product);
        return productDto;
     }
