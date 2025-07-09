@@ -3,7 +3,6 @@ package eu.itcrafters.brewstop.controller.dto;
 import eu.itcrafters.brewstop.infrastructure.persistence.product.Product;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -19,11 +18,8 @@ public class ProductDto {
     @NotNull
     @Size(max = 10)
     @NotEmpty
-    String name;
+    private String name;
     @NotNull
-
-
-
     private BigDecimal price;
     private String categoryName;
 }
