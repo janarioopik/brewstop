@@ -2,7 +2,6 @@ package eu.itcrafters.brewstop.controller;
 
 import eu.itcrafters.brewstop.controller.dto.ProductDto;
 import eu.itcrafters.brewstop.controller.dto.ProductInfo;
-import eu.itcrafters.brewstop.infrastructure.persistence.product.Product;
 import eu.itcrafters.brewstop.infrastructure.rest.error.ApiError;
 import eu.itcrafters.brewstop.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
