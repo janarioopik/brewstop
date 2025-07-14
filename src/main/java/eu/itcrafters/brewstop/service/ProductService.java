@@ -9,6 +9,7 @@ import eu.itcrafters.brewstop.infrastructure.persistence.product.ProductMapper;
 import eu.itcrafters.brewstop.infrastructure.persistence.product.ProductRepository;
 import eu.itcrafters.brewstop.infrastructure.rest.error.Error;
 import eu.itcrafters.brewstop.infrastructure.rest.exception.DataNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +24,13 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
 
     public void addProduct(ProductDto productDto) {
-        Category category = categoryRepository.findCategoryNameBy(productDto.getCategoryName())
-                .orElseThrow(() -> new DataNotFoundException(Error.NO_CATEGORY_EXISTS.getMessage()));
+        Category category = getValidProductname(productDto.getCategoryName());
         Product product = productMapper.toProduct(productDto);
         product.setCategory(category);
         productRepository.save(product);
 
     }
+
 
 
     public List<ProductInfo> findAll() {
@@ -40,10 +41,28 @@ public class ProductService {
 
 
     public ProductDto findProduct(Integer id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Product is not in menu"));
-        ProductDto productDto = productMapper.toProductDto(product);
-        return productDto;
+        Product product = getValidProduct(id);
+
+        return productMapper.toProductDto(product);
     }
 
 
+
+
+    public void updateProduct(Integer productId, ProductDto productDto) {
+        Product product = getValidProduct(productId);
+        Category productname = getValidProductname(productDto.getCategoryName());
+        productMapper.updateProduct(productDto, product);
+        product.setCategory(productname);
+        productRepository.save(product);
+
+    }
+    private Category getValidProductname(String categoryName) {
+        return categoryRepository.findCategoryNameBy(categoryName)
+                .orElseThrow(() -> new DataNotFoundException(Error.NO_CATEGORY_EXISTS.getMessage()));
+    }
+    private Product getValidProduct(Integer id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(Error.NO_PRODUCT_EXISTS.getMessage()));
+    }
 }

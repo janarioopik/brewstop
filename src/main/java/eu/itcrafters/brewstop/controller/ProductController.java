@@ -51,4 +51,18 @@ public class ProductController {
         return productService.findAll();
     }
 
+
+    @PutMapping("/product/{productId}")
+    @Operation(summary = "Updates product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "400", description = "Invalid request body",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @ApiResponse(responseCode = "404", description = "Product not exist",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))
+
+    })
+public void updateProduct(@PathVariable Integer productId, @RequestBody @Valid ProductDto productDto) {
+productService.updateProduct(productId, productDto);
+    }
 }
