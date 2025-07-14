@@ -9,12 +9,10 @@ import eu.itcrafters.brewstop.infrastructure.persistence.product.ProductMapper;
 import eu.itcrafters.brewstop.infrastructure.persistence.product.ProductRepository;
 import eu.itcrafters.brewstop.infrastructure.rest.error.Error;
 import eu.itcrafters.brewstop.infrastructure.rest.exception.DataNotFoundException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +30,6 @@ public class ProductService {
     }
 
 
-
     public List<ProductInfo> findAll() {
         List<Product> products = productRepository.findAll();
 
@@ -47,8 +44,6 @@ public class ProductService {
     }
 
 
-
-
     public void updateProduct(Integer productId, ProductDto productDto) {
         Product product = getValidProduct(productId);
         Category productname = getValidProductname(productDto.getCategoryName());
@@ -57,12 +52,20 @@ public class ProductService {
         productRepository.save(product);
 
     }
+
     private Category getValidProductname(String categoryName) {
         return categoryRepository.findCategoryNameBy(categoryName)
                 .orElseThrow(() -> new DataNotFoundException(Error.NO_CATEGORY_EXISTS.getMessage()));
     }
+
     private Product getValidProduct(Integer id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException(Error.NO_PRODUCT_EXISTS.getMessage()));
+    }
+
+    public void deleteProduct(Integer productId) {
+        Product product = getValidProduct(productId);
+        productRepository.delete(product);
+
     }
 }

@@ -64,4 +64,20 @@ public class ProductController {
 public void updateProduct(@PathVariable Integer productId, @RequestBody @Valid ProductDto productDto) {
 productService.updateProduct(productId, productDto);
     }
+
+    @DeleteMapping("/product/{productId}")
+    @Operation(summary = "Deletes product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Ok"),
+            @ApiResponse(responseCode = "400", description = "Invalid request body",
+                    content = @Content(schema = @Schema(implementation = ApiError.class))),
+            @ApiResponse(responseCode = "404", description = "Id not found",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))
+
+    })
+
+
+    public void deleteProduct(@PathVariable Integer productId) {
+       productService.deleteProduct(productId);
+    }
 }
