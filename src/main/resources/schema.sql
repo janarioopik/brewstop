@@ -29,14 +29,13 @@ CREATE TABLE product (
 -- ------------------------------------------------------------
 CREATE TABLE price_change (
                               id         INT GENERATED ALWAYS AS IDENTITY (START WITH 1) NOT NULL,
-                              product_id INT NOT NULL,
-                              old_price  DECIMAL(7,2) NOT NULL,
-                              new_price  DECIMAL(7,2) NOT NULL,
-                              changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+                              product_id INT              NOT NULL,
+                              old_price  DECIMAL(7,2)     NOT NULL,
+                              new_price  DECIMAL(7,2)     NOT NULL,
+                              changed_at TIMESTAMP        DEFAULT CURRENT_TIMESTAMP NOT NULL,
                               CONSTRAINT price_change_pk PRIMARY KEY (id),
                               CONSTRAINT fk_price_product
-                                  FOREIGN KEY (product_id)
-                                      REFERENCES product (id)
+                                  FOREIGN KEY (product_id) REFERENCES product (id)
 );
 
 
