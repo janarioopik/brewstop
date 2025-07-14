@@ -2,6 +2,7 @@ package eu.itcrafters.brewstop.controller;
 
 import eu.itcrafters.brewstop.controller.dto.ProductDto;
 import eu.itcrafters.brewstop.controller.dto.ProductInfo;
+import eu.itcrafters.brewstop.infrastructure.persistence.priceChange.dto.PriceChangeDto;
 import eu.itcrafters.brewstop.infrastructure.rest.error.ApiError;
 import eu.itcrafters.brewstop.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,6 +14,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -75,9 +77,19 @@ productService.updateProduct(productId, productDto);
                     content = @Content(schema = @Schema(implementation = ApiError.class)))
 
     })
-
-
     public void deleteProduct(@PathVariable Integer productId) {
        productService.deleteProduct(productId);
     }
+
+    @GetMapping("/{id}/price-history")
+    public List<PriceChangeDto> history(@PathVariable Integer id) {
+        return productService.history(id);
+    }
+
+    @PostMapping("/{id}/change-price")
+    public ProductDto changePrice(@PathVariable Integer id,
+                                  @RequestParam BigDecimal newPrice) {
+        return productService.changePrice(id, newPrice);
+    }
+
 }

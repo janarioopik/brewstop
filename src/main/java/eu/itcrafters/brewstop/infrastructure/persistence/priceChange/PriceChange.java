@@ -1,4 +1,4 @@
-package eu.itcrafters.brewstop.infrastructure.persistence;
+package eu.itcrafters.brewstop.infrastructure.persistence.priceChange;
 
 import eu.itcrafters.brewstop.infrastructure.persistence.product.Product;
 import jakarta.persistence.*;
