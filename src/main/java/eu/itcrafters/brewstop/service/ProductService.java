@@ -98,7 +98,7 @@ public class ProductService {
 
 
         return priceChangeMapper.toDtoList(
-                priceChangeRepository
+                (List<PriceChange>) priceChangeRepository
                         .findByProductIdOrderByChangedAtDesc(productId));
 
 
