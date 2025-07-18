@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-  @Query("select c from Category c inner join c.products products where upper(products.category.name) = upper(:name)")
-  Optional<Category> findCategoryNameBy(@Param("name") String name);
+    @Query("select c from Category c inner join c.products products where upper(products.category.name) = upper(:name)")
+    Optional<Category> findCategoryNameBy(@Param("name") String name);
 }

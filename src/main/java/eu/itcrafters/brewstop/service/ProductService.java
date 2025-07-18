@@ -75,6 +75,7 @@ public class ProductService {
         productRepository.delete(product);
 
     }
+
     public ProductDto changePrice(Integer productId, BigDecimal newPrice) {
         Product product = getValidProduct(productId);
 
@@ -82,7 +83,7 @@ public class ProductService {
             return productMapper.toProductDto(product);
         }
         PriceChange priceChange = new PriceChange();
-        priceChange. setProduct(product);
+        priceChange.setProduct(product);
         priceChange.setOldPrice(product.getPrice());
         priceChange.setNewPrice(newPrice);
 
@@ -92,15 +93,12 @@ public class ProductService {
         productRepository.save(product);
         return productMapper.toProductDto(product);
     }
+
     public List<PriceChangeDto> history(Integer productId) {
 
         getValidProduct(productId);
 
-
-        return priceChangeMapper.toDtoList(
-                (List<PriceChange>) priceChangeRepository
-                        .findByProductIdOrderByChangedAtDesc(productId));
-
+        return priceChangeMapper.toDtoList((List<PriceChange>) priceChangeRepository.findByProductIdOrderByChangedAtDesc(productId));
 
     }
 }

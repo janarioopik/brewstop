@@ -14,6 +14,4 @@ import lombok.ToString;
 @ToString
 public class ProductInfo extends ProductDto {
     private Integer id;
-
-
 }

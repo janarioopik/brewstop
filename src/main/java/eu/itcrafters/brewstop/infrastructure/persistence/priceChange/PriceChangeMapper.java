@@ -10,6 +10,5 @@ public interface PriceChangeMapper {
 
     PriceChangeDto toDto(PriceChange pc);
 
-
     List<PriceChangeDto> toDtoList(List<PriceChange> changes);
 }
