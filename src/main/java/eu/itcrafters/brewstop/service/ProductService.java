@@ -62,13 +62,6 @@ public class ProductService {
 
     }
 
-    private Category getValidProductname(String categoryName) {
-        return categoryRepository.findCategoryNameBy(categoryName).orElseThrow(() -> new DataNotFoundException(Error.NO_CATEGORY_EXISTS.getMessage()));
-    }
-
-    private Product getValidProduct(Integer id) {
-        return productRepository.findById(id).orElseThrow(() -> new DataNotFoundException(Error.NO_PRODUCT_EXISTS.getMessage()));
-    }
 
     public void deleteProduct(Integer productId) {
         Product product = getValidProduct(productId);
@@ -100,5 +93,13 @@ public class ProductService {
 
         return priceChangeMapper.toDtoList(priceChangeRepository.findByProductIdOrderByChangedAtDesc(productId));
 
+    }
+
+    private Category getValidProductname(String categoryName) {
+        return categoryRepository.findCategoryNameBy(categoryName).orElseThrow(() -> new DataNotFoundException(Error.NO_CATEGORY_EXISTS.getMessage()));
+    }
+
+    private Product getValidProduct(Integer id) {
+        return productRepository.findById(id).orElseThrow(() -> new DataNotFoundException(Error.NO_PRODUCT_EXISTS.getMessage()));
     }
 }
