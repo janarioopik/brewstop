@@ -98,7 +98,7 @@ public class ProductService {
 
         getValidProduct(productId);
 
-        return priceChangeMapper.toDtoList((List<PriceChange>) priceChangeRepository.findByProductIdOrderByChangedAtDesc(productId));
+        return priceChangeMapper.toDtoList(priceChangeRepository.findByProductIdOrderByChangedAtDesc(productId));
 
     }
 }

@@ -22,16 +22,16 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-   @PostMapping("/product")
-   @Operation(summary = "Adds product")
-   @ApiResponses(value = {
-           @ApiResponse(responseCode = "200", description = "ok"),
-           @ApiResponse(responseCode = "404", description = "Product type not exist",
-                   content = @Content(schema = @Schema(implementation = ApiError.class)))
-   })
+    @PostMapping("/product")
+    @Operation(summary = "Adds product")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "ok"),
+            @ApiResponse(responseCode = "404", description = "Product type not exist",
+                    content = @Content(schema = @Schema(implementation = ApiError.class)))
+    })
     public void addProduct(@RequestBody @Valid ProductDto productDto) {
-       productService.addProduct(productDto);
-   }
+        productService.addProduct(productDto);
+    }
 
 
     @GetMapping("/products/{id}")
@@ -63,8 +63,8 @@ public class ProductController {
                     content = @Content(schema = @Schema(implementation = ApiError.class)))
 
     })
-public void updateProduct(@PathVariable Integer productId, @RequestBody @Valid ProductDto productDto) {
-productService.updateProduct(productId, productDto);
+    public void updateProduct(@PathVariable Integer productId, @RequestBody @Valid ProductDto productDto) {
+        productService.updateProduct(productId, productDto);
     }
 
     @DeleteMapping("/product/{productId}")
@@ -78,7 +78,7 @@ productService.updateProduct(productId, productDto);
 
     })
     public void deleteProduct(@PathVariable Integer productId) {
-       productService.deleteProduct(productId);
+        productService.deleteProduct(productId);
     }
 
     @GetMapping("/{id}/price-history")
