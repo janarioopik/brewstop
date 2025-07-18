@@ -82,6 +82,8 @@ productService.updateProduct(productId, productDto);
     }
 
     @GetMapping("/{id}/price-history")
+
+    //nimetus
     public List<PriceChangeDto> history(@PathVariable Integer id) {
         return productService.history(id);
     }
