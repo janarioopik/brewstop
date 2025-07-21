@@ -20,7 +20,7 @@ Everything runs in an **in-memory HSQLDB**; no external DB is needed.
 | A browser | to open Swagger UI |
 
 ---
-![ER-Diagram](brewstop/docs/ERD.png)
+![ER-Diagram](docs/ERD.png)
 
 ## Getting Started
 
