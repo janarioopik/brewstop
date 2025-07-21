@@ -1,6 +1,7 @@
 package eu.itcrafters.brewstop.infrastructure.persistence.product;
 
 import eu.itcrafters.brewstop.infrastructure.persistence.category.Category;
+import eu.itcrafters.brewstop.infrastructure.persistence.priceChange.PriceChange;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,4 +35,7 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CATEGORY_ID", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Set<PriceChange> priceChanges = new HashSet<>();
 }

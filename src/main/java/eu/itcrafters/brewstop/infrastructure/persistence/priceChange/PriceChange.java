@@ -19,8 +19,8 @@ public class PriceChange {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PRODUCT_ID", nullable = false)
     private Product product;
 
     @Column(name = "OLD_PRICE", nullable = false, precision = 7, scale = 2)
@@ -33,4 +33,6 @@ public class PriceChange {
     @CreationTimestamp
     @Column(name = "CHANGED_AT", nullable = false, updatable = false)
     private Instant changedAt;
+
+
 }
