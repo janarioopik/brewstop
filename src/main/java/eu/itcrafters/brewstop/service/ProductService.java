@@ -22,7 +22,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+
 public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
@@ -55,9 +55,9 @@ public class ProductService {
 
     public void updateProduct(Integer productId, ProductDto productDto) {
         Product product = getValidProduct(productId);
-        Category productname = getValidProductname(productDto.getCategoryName());
+        Category productName = getValidProductname(productDto.getCategoryName());
         productMapper.updateProduct(productDto, product);
-        product.setCategory(productname);
+        product.setCategory(productName);
         productRepository.save(product);
 
     }
@@ -69,6 +69,7 @@ public class ProductService {
 
     }
 
+    @Transactional
     public ProductDto changePrice(Integer productId, BigDecimal newPrice) {
         Product product = getValidProduct(productId);
 
@@ -87,11 +88,12 @@ public class ProductService {
         return productMapper.toProductDto(product);
     }
 
-    public List<PriceChangeDto> history(Integer productId) {
+    public List<PriceChangeDto> getPriceHistory(Integer productId) {
 
         getValidProduct(productId);
 
-        return priceChangeMapper.toDtoList(priceChangeRepository.findByProductIdOrderByChangedAtDesc(productId));
+        List<PriceChange> productHistoryList = priceChangeRepository.findByProductIdOrderByChangedAtDesc(productId);
+        return priceChangeMapper.toDtoList(productHistoryList);
 
     }
 

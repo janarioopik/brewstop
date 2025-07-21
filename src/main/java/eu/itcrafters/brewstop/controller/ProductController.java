@@ -24,11 +24,7 @@ public class ProductController {
 
     @PostMapping("/product")
     @Operation(summary = "Adds product")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "ok"),
-            @ApiResponse(responseCode = "404", description = "Product type not exist",
-                    content = @Content(schema = @Schema(implementation = ApiError.class)))
-    })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "ok"), @ApiResponse(responseCode = "404", description = "Product type not exist", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public void addProduct(@RequestBody @Valid ProductDto productDto) {
         productService.addProduct(productDto);
     }
@@ -36,11 +32,7 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     @Operation(summary = "Finds product by Id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "ok"),
-            @ApiResponse(responseCode = "404", description = "Product not exist",
-                    content = @Content(schema = @Schema(implementation = ApiError.class)))
-    })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "ok"), @ApiResponse(responseCode = "404", description = "Product not exist", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public ProductDto findProduct(@PathVariable("id") Integer id) {
         return productService.findProduct(id);
     }
@@ -55,12 +47,7 @@ public class ProductController {
 
     @PutMapping("/product/{productId}")
     @Operation(summary = "Updates product")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Ok"),
-            @ApiResponse(responseCode = "400", description = "Invalid request body",
-                    content = @Content(schema = @Schema(implementation = ApiError.class))),
-            @ApiResponse(responseCode = "404", description = "Product not exist",
-                    content = @Content(schema = @Schema(implementation = ApiError.class)))
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Ok"), @ApiResponse(responseCode = "400", description = "Invalid request body", content = @Content(schema = @Schema(implementation = ApiError.class))), @ApiResponse(responseCode = "404", description = "Product not exist", content = @Content(schema = @Schema(implementation = ApiError.class)))
 
     })
     public void updateProduct(@PathVariable Integer productId, @RequestBody @Valid ProductDto productDto) {
@@ -69,28 +56,18 @@ public class ProductController {
 
     @DeleteMapping("/product/{productId}")
     @Operation(summary = "Deletes product")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Ok"),
-            @ApiResponse(responseCode = "400", description = "Invalid request body",
-                    content = @Content(schema = @Schema(implementation = ApiError.class))),
-            @ApiResponse(responseCode = "404", description = "Id not found",
-                    content = @Content(schema = @Schema(implementation = ApiError.class)))
-
-    })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Ok"), @ApiResponse(responseCode = "400", description = "Invalid request body", content = @Content(schema = @Schema(implementation = ApiError.class))), @ApiResponse(responseCode = "404", description = "Id not found", content = @Content(schema = @Schema(implementation = ApiError.class)))})
     public void deleteProduct(@PathVariable Integer productId) {
         productService.deleteProduct(productId);
     }
 
     @GetMapping("/{id}/price-history")
-
-    //nimetus
-    public List<PriceChangeDto> history(@PathVariable Integer id) {
-        return productService.history(id);
+    public List<PriceChangeDto> getPriceHistory(@PathVariable Integer id) {
+        return productService.getPriceHistory(id);
     }
 
     @PostMapping("/{id}/change-price")
-    public ProductDto changePrice(@PathVariable Integer id,
-                                  @RequestParam BigDecimal newPrice) {
+    public ProductDto changePrice(@PathVariable Integer id, @RequestParam BigDecimal newPrice) {
         return productService.changePrice(id, newPrice);
     }
 

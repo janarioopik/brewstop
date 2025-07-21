@@ -27,7 +27,7 @@ public interface ProductMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @InheritConfiguration(name = "toProduct")
-    Product updateProduct(ProductDto productDto, @MappingTarget Product product);
+    void updateProduct(ProductDto productDto, @MappingTarget Product product);
 
 }
 
