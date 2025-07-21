@@ -62,11 +62,16 @@ public class ProductController {
     }
 
     @GetMapping("/{id}/price-history")
+    @Operation(summary = "Shows price history")
     public List<PriceChangeDto> getPriceHistory(@PathVariable Integer id) {
         return productService.getPriceHistory(id);
     }
 
-    @PostMapping("/{id}/change-price")
+    @PutMapping("/{id}/change-price")
+    @Operation(summary = "Changes product price")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Ok"), @ApiResponse(responseCode = "400", description = "Invalid request body", content = @Content(schema = @Schema(implementation = ApiError.class))), @ApiResponse(responseCode = "404", description = "Id or price is invalid", content = @Content(schema = @Schema(implementation = ApiError.class)))
+
+    })
     public ProductDto changePrice(@PathVariable Integer id, @RequestParam BigDecimal newPrice) {
         return productService.changePrice(id, newPrice);
     }
