@@ -108,7 +108,7 @@ CATEGORY 1 ────∞ PRODUCT 1 ────∞ PRICE_CHANGE
 ```
 ![ERD Diagram](docs/ERD.png)
 
-```
+
 Project Layout
 text
 Copy
