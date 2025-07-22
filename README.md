@@ -64,8 +64,8 @@ cd brewstop
 
 
 
-
-Run in IntelliJ IDEA
+```
+## Run in IntelliJ IDEA
 Open Project ➜ choose the folder with build.gradle.
 
 Wait for Gradle sync.
@@ -79,15 +79,18 @@ Stop with the red ■ when done.
 Command-line alternative
 ./gradlew bootRun
 
+```
 Swagger UI
 Interactive API docs:
 http://localhost:8080/swagger-ui/index.html
 
+```
 Configuration
 Runtime settings live in
 src/main/resources/application.properties.
 Defaults: HSQLDB memory DB, server port 8080.
 
+```
 Database Initialisation
 File	Purpose
 schema.sql	DDL – creates CATEGORY, PRODUCT, PRICE_CHANGE
@@ -95,15 +98,17 @@ data.sql	Seeds two categories & two demo products
 
 Executed automatically each start-up.
 
+```
 Database Structure
+
 objectivec
 Copy
 CATEGORY 1 ────∞ PRODUCT 1 ────∞ PRICE_CHANGE
 
+```
 ![ERD Diagram](docs/ERD.png)
 
-
-
+```
 Available Endpoints
 Method	Path	Description
 GET	/products	List all products
@@ -114,7 +119,7 @@ DELETE	/product/{id}	Remove product
 POST	/product/{id}/change-price?newPrice=9.99	Change & log price
 GET	/product/{id}/price-changes	Price history
 
-
+```
 Project Layout
 text
 Copy
