@@ -109,17 +109,6 @@ CATEGORY 1 ────∞ PRODUCT 1 ────∞ PRICE_CHANGE
 ![ERD Diagram](docs/ERD.png)
 
 ```
-Available Endpoints
-Method	Path	Description
-GET	/products	List all products
-GET	/product/{id}	One product
-POST	/product	Create product
-PUT	/product/{id}	Update product
-DELETE	/product/{id}	Remove product
-POST	/product/{id}/change-price?newPrice=9.99	Change & log price
-GET	/product/{id}/price-changes	Price history
-
-```
 Project Layout
 text
 Copy
